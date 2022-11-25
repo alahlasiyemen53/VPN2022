@@ -5,7 +5,7 @@ ADMINPASSWORD="secret"
 DNS1="8.8.8.8"
 DNS2="8.8.4.4"
 PROTOCOL=udp
-PORT=443
+PORT=8094
 HOST=$(wget -4qO- "http://whatismyip.akamai.com/")
 
 
@@ -181,7 +181,7 @@ fi
 # If SELinux is enabled and a custom port or TCP was selected, we need this
 if hash sestatus 2>/dev/null; then
 	if sestatus | grep "Current mode" | grep -qs "enforcing"; then
-		if [[ "$PORT" != '443' || "$PROTOCOL" = 'tcp' ]]; then
+		if [[ "$PORT" != '8094' || "$PROTOCOL" = 'tcp' ]]; then
 			# semanage isn't available in CentOS 6 by default
 			if ! hash semanage 2>/dev/null; then
 				yum install policycoreutils-python -y
